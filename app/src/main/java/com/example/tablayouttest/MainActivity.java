@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private Fragment_item2 fragment2 = new Fragment_item2();
     private Fragment_item3 fragment3 = new Fragment_item3();
 
+    //============== onCreate START ==============//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         viewPager.addOnPageChangeListener(this);
         tabLayout.addOnTabSelectedListener(this);
 
-        // 添加適配器，在 viewPager 里引入 Fragment
+        // 添加適配器，在 viewPager 裡引入 Fragment
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -50,7 +51,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             }
         });
     }
+    //============== onCreate END ==============//
 
+    //============== implement methods START ==============//
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        // viewPager 滑動之後觸發
+        // viewPager 滑動之後觸發 -> 讓 tab 下方的 indicator 要跟著選中的 tab 移動
         tabLayout.getTabAt(position).select();
     }
 
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        // TabLayout 裡的 TabItem 被選中的時候觸發
+        // TabLayout 裡的 TabItem 被選中的時候觸發 -> 讓 viewPager 換頁
         viewPager.setCurrentItem(tab.getPosition());
     }
 
@@ -82,4 +85,5 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+    //============== implement methods END ==============//
 }
